@@ -223,7 +223,6 @@ export const PortfolioFrame = (): JSX.Element => {
       <BlueprintCorner position="tr" />
       <BlueprintCorner position="bl" />
       <BlueprintCorner position="br" />
-
       {/* Top ruler annotation */}
       <div
         className="mono"
@@ -241,7 +240,6 @@ export const PortfolioFrame = (): JSX.Element => {
       >
         PORTFOLIO — REV.2025 — SHRUTHI ANDRU
       </div>
-
       {/* Left vertical label */}
       <div
         className="mono"
@@ -260,7 +258,6 @@ export const PortfolioFrame = (): JSX.Element => {
       >
         DESIGN · HCI · AI · ARCHITECTURE
       </div>
-
       {/* Right vertical label */}
       <div
         className="mono"
@@ -279,7 +276,6 @@ export const PortfolioFrame = (): JSX.Element => {
       >
         SHEET 01 OF 01 · SCALE: NTS
       </div>
-
       <div
         style={{
           maxWidth: 900,
@@ -313,7 +309,7 @@ export const PortfolioFrame = (): JSX.Element => {
             className="mono"
             style={{ color: "#4d8fff", fontSize: 10, letterSpacing: "0.15em", opacity: 0.55 }}
           >
-            DWG NO. SA-001
+            Last Updated - 2026
           </div>
         </header>
 
@@ -459,7 +455,9 @@ export const PortfolioFrame = (): JSX.Element => {
               </p>
             </div>
 
-            <div style={{ marginBottom: 20, paddingLeft: 20, borderLeft: "1px solid rgba(0,83,224,0.2)" }}>
+            <div
+              style={{ marginBottom: 20, paddingLeft: 20, borderLeft: "1px solid rgba(0,83,224,0.2)" }}
+              className="pl-[0px]">
               <p
                 className="heading-font"
                 style={{
@@ -478,7 +476,7 @@ export const PortfolioFrame = (): JSX.Element => {
               </p>
             </div>
 
-            <div style={{ paddingLeft: 40, borderLeft: "1px solid rgba(0,83,224,0.1)" }}>
+            <div className="pl-[0px]" style={{ borderLeft: "1px solid rgba(0,83,224,0.1)" }}>
               <p
                 className="heading-font"
                 style={{
