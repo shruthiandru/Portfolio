@@ -1,9 +1,4 @@
-import { useState } from "react";
-
-const navItems = [
-  { label: "HOME", active: true },
-  { label: "ARTICLES", active: false },
-];
+import { BlueprintLayout, BlueprintCorner } from "@/components/BlueprintLayout";
 
 const speakingEngagements = [
   {
@@ -73,31 +68,6 @@ const mentorshipItems = [
   { title: "Adobe Creative Apprenticeship", detail: "Mentor & Reviewer" },
   { title: "Adobe Creative Retreat", detail: "Mentor & Reviewer" },
 ];
-
-function BlueprintCorner({
-  position,
-}: {
-  position: "tl" | "tr" | "bl" | "br";
-}) {
-  const styles: Record<string, React.CSSProperties> = {
-    tl: { top: 0, left: 0, borderWidth: "1.5px 0 0 1.5px" },
-    tr: { top: 0, right: 0, borderWidth: "1.5px 1.5px 0 0" },
-    bl: { bottom: 0, left: 0, borderWidth: "0 0 1.5px 1.5px" },
-    br: { bottom: 0, right: 0, borderWidth: "0 1.5px 1.5px 0" },
-  };
-  return (
-    <div
-      style={{
-        position: "absolute",
-        width: 20,
-        height: 20,
-        borderColor: "rgba(0,83,224,0.7)",
-        borderStyle: "solid",
-        ...styles[position],
-      }}
-    />
-  );
-}
 
 function AnnotationDot({ number }: { number: number }) {
   return (
@@ -211,402 +181,247 @@ function ItemRow({ title, detail, link }: { title: string; detail: string; link?
 }
 
 export const PortfolioFrame = (): JSX.Element => {
-  const [activeNav, setActiveNav] = useState("HOME");
-
   return (
-    <main
-      className="blueprint-grid"
-      style={{ minHeight: "100vh", width: "100%", position: "relative" }}
-    >
-      {/* Page-level corner markers */}
-      <BlueprintCorner position="tl" />
-      <BlueprintCorner position="tr" />
-      <BlueprintCorner position="bl" />
-      <BlueprintCorner position="br" />
-      {/* Top ruler annotation */}
-      <div
-        className="mono"
+    <BlueprintLayout>
+      {/* ── TITLE BLOCK ── */}
+      <section
         style={{
-          position: "absolute",
-          top: 10,
-          left: "50%",
-          transform: "translateX(-50%)",
-          color: "#4d8fff",
-          fontSize: 9,
-          letterSpacing: "0.18em",
-          opacity: 0.4,
-          pointerEvents: "none",
-        }}
-      >
-        PORTFOLIO — REV.2026 — SHRUTHI ANDRU
-      </div>
-      {/* Left vertical label */}
-      <div
-        className="mono"
-        style={{
-          position: "fixed",
-          left: 12,
-          top: "50%",
-          transform: "translateY(-50%) rotate(-90deg)",
-          color: "#0053e0",
-          fontSize: 9,
-          letterSpacing: "0.2em",
-          opacity: 0.35,
-          pointerEvents: "none",
-          whiteSpace: "nowrap",
-        }}
-      >
-        DESIGN · HCI · AI · ARCHITECTURE
-      </div>
-      {/* Right vertical label */}
-      <div
-        className="mono"
-        style={{
-          position: "fixed",
-          right: 12,
-          top: "50%",
-          transform: "translateY(-50%) rotate(90deg)",
-          color: "#0053e0",
-          fontSize: 9,
-          letterSpacing: "0.2em",
-          opacity: 0.35,
-          pointerEvents: "none",
-          whiteSpace: "nowrap",
-        }}
-      >
-        SHEET 01 OF 01 · SCALE: NTS
-      </div>
-      <div
-        style={{
-          maxWidth: 900,
-          margin: "0 auto",
-          padding: "48px 32px 80px",
           position: "relative",
+          border: "1px solid rgba(0,83,224,0.18)",
+          padding: "32px 28px",
+          marginBottom: 40,
         }}
       >
-        {/* ── HEADER / NAV ── */}
-        <header
+        <BlueprintCorner position="tl" />
+        <BlueprintCorner position="tr" />
+        <BlueprintCorner position="bl" />
+        <BlueprintCorner position="br" />
+
+        {/* Sheet ref tag */}
+        <div
+          className="mono"
           style={{
+            position: "absolute",
+            top: -10,
+            left: 20,
+            background: "#020035",
+            padding: "0 8px",
+            color: "#4d8fff",
+            fontSize: 9,
+            letterSpacing: "0.15em",
+            opacity: 0.7,
+          }}
+        >
+          § TITLE BLOCK
+        </div>
+
+        <h1
+          className="heading-font"
+          style={{
+            fontSize: "clamp(52px, 10vw, 108px)",
+            fontWeight: 700,
+            lineHeight: 0.92,
+            letterSpacing: "-0.01em",
+            color: "#c0c7d3",
+            margin: 0,
+          }}
+        >
+          Shruthi
+          <br />
+          Andru
+        </h1>
+
+        <p
+          className="heading-font"
+          style={{
+            fontSize: "clamp(18px, 3.5vw, 36px)",
+            fontWeight: 400,
+            marginTop: 16,
+            lineHeight: 1.2,
+            letterSpacing: "0.02em",
+          }}
+        >
+          <span style={{ color: "#0053e0" }}>is a </span>
+          <span style={{ color: "#c0c7d3", fontWeight: 600 }}>Designer</span>
+          <span style={{ color: "#0053e0" }}> designing for Designers</span>
+        </p>
+
+        {/* Dimension annotation line */}
+        <div
+          style={{
+            marginTop: 20,
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 48,
+            gap: 8,
           }}
         >
-          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                type="button"
-                onClick={() => setActiveNav(item.label)}
-                className={activeNav === item.label ? "nav-active" : "nav-inactive"}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </header>
+          <div style={{ width: 8, height: 1, background: "#4d8fff", opacity: 0.5 }} />
+          <span className="mono" style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}>PRODUCT DESIGNER · ADOBE INC.</span>
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, rgba(77,143,255,0.4), transparent)" }} />
+        </div>
+      </section>
 
-        {/* ── TITLE BLOCK ── */}
-        <section
+      {/* ── BIO SECTIONS ── */}
+      <section style={{ marginBottom: 36, position: "relative" }}>
+        <div
+          className="mono"
           style={{
-            position: "relative",
-            border: "1px solid rgba(0,83,224,0.18)",
-            padding: "32px 28px",
-            marginBottom: 40,
+            position: "absolute",
+            top: -9,
+            left: 0,
+            background: "#020035",
+            paddingRight: 8,
+            color: "#4d8fff",
+            fontSize: 9,
+            letterSpacing: "0.15em",
+            opacity: 0.6,
           }}
         >
-          <BlueprintCorner position="tl" />
-          <BlueprintCorner position="tr" />
-          <BlueprintCorner position="bl" />
-          <BlueprintCorner position="br" />
-
-          {/* Sheet ref tag */}
-          <div
-            className="mono"
-            style={{
-              position: "absolute",
-              top: -10,
-              left: 20,
-              background: "#020035",
-              padding: "0 8px",
-              color: "#4d8fff",
-              fontSize: 9,
-              letterSpacing: "0.15em",
-              opacity: 0.7,
-            }}
-          >
-            § TITLE BLOCK
-          </div>
-
-          <h1
-            className="heading-font"
-            style={{
-              fontSize: "clamp(52px, 10vw, 108px)",
-              fontWeight: 700,
-              lineHeight: 0.92,
-              letterSpacing: "-0.01em",
-              color: "#c0c7d3",
-              margin: 0,
-            }}
-          >
-            Shruthi
-            <br />
-            Andru
-          </h1>
-
-          <p
-            className="heading-font"
-            style={{
-              fontSize: "clamp(18px, 3.5vw, 36px)",
-              fontWeight: 400,
-              marginTop: 16,
-              lineHeight: 1.2,
-              letterSpacing: "0.02em",
-            }}
-          >
-            <span style={{ color: "#0053e0" }}>is a </span>
-            <span style={{ color: "#c0c7d3", fontWeight: 600 }}>Designer</span>
-            <span style={{ color: "#0053e0" }}> designing for Designers</span>
-          </p>
-
-          {/* Dimension annotation line */}
-          <div
-            style={{
-              marginTop: 20,
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-          >
-            <div style={{ width: 8, height: 1, background: "#4d8fff", opacity: 0.5 }} />
-            <span className="mono" style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}>PRODUCT DESIGNER · ADOBE INC.</span>
-            <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, rgba(77,143,255,0.4), transparent)" }} />
-          </div>
-        </section>
-
-        {/* ── BIO SECTIONS ── */}
-        <section style={{ marginBottom: 36, position: "relative" }}>
-          <div
-            className="mono"
-            style={{
-              position: "absolute",
-              top: -9,
-              left: 0,
-              background: "#020035",
-              paddingRight: 8,
-              color: "#4d8fff",
-              fontSize: 9,
-              letterSpacing: "0.15em",
-              opacity: 0.6,
-            }}
-          >§ BACKGROUND</div>
-          <div
-            style={{
-              borderTop: "1px solid rgba(0,83,224,0.25)",
-              paddingTop: 20,
-            }}
-          >
-            <div style={{ marginBottom: 20 }}>
-              <p
-                className="heading-font"
-                style={{
-                  color: "#1b52d7",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  margin: "0 0 6px",
-                  textTransform: "uppercase",
-                }}
-              >
-                /At Present
-              </p>
-              <p
-                className="body-font"
-                style={{ color: "#777a90", fontSize: 15, lineHeight: 1.65, margin: 0, maxWidth: 680 }}
-              >
-                She is currently{" "}
-                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>
-                  designing harness infrastructure for legacy enterprise systems
-                </strong>{" "}
-                at Adobe and is fighting an uphill battle for{" "}
-                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>
-                  redefining the role of Design at Adobe
-                </strong>{" "}
-                in this new AI Era.
-                <br /><br />
-                She serves as a bridge between Scientific research and Engineering,{" "}
-                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>facilitating workshops between Scientific Research & Engineering</strong>{" "}
-                and{" "}
-                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>consults with Product Teams</strong>{" "}
-                to improve their design processes through AI enablement.
-                <br /><br />
-                She also serves on the grant panel committee at Adobe and regularly volunteers her time for Pro Bono design services. Outside of work, she regularly gives guest lectures in NYC and serves as an industry mentor sponsoring projects for various grad school's studio classes.
-              </p>
-            </div>
-
-            <div
-              style={{ marginBottom: 20, paddingLeft: 20, borderLeft: "1px solid rgba(0,83,224,0.2)" }}
-              className="pl-[0px]">
-              <p
-                className="heading-font"
-                style={{
-                  color: "#1b52d7",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  margin: "0 0 4px",
-                  textTransform: "uppercase",
-                }}
-              >
-                /Previously
-              </p>
-              <p className="body-font" style={{ color: "#777a90", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
-                She had designed for AI Agents and experiences for Enterprise marketing workflows.
-              </p>
-            </div>
-
-            <div className="pl-[0px]" style={{ borderLeft: "1px solid rgba(0,83,224,0.1)" }}>
-              <p
-                className="heading-font"
-                style={{
-                  color: "#1b52d7",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  margin: "0 0 4px",
-                  textTransform: "uppercase",
-                }}
-              >
-                /Past Life
-              </p>
-              <p className="body-font" style={{ color: "#777a90", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
-                An architect in a previous lifetime.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── DIVIDER ── */}
-        <div className="blueprint-divider" style={{ margin: "32px 0" }} />
-
-        {/* ── GRID OF SECTIONS ── */}
-        <section
+          § NARRATIVE
+        </div>
+        <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
-            gap: "40px 48px",
-            position: "relative",
+            borderTop: "1px solid rgba(0,83,224,0.25)",
+            paddingTop: 20,
           }}
         >
-          {/* Speaking Engagements */}
-          <div>
-            <SectionLabel label="Speaking Engagements" index="A1" />
-            {speakingEngagements.map((item, i) => (
-              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
-                <AnnotationDot number={i + 1} />
-                <ItemRow title={item.title} detail={item.detail} />
-              </div>
-            ))}
-          </div>
-
-          {/* Patents + Publications */}
-          <div>
-            <SectionLabel label="Patents + Publications" index="A2" />
-            {patentsAndPublications.map((item, i) => (
-              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
-                <AnnotationDot number={i + 1} />
-                <ItemRow title={item.title} detail={item.detail} link={item.link} />
-              </div>
-            ))}
-          </div>
-
-          {/* Teaching */}
-          <div>
-            <SectionLabel label="Teaching" index="B1" />
-            {teachingItems.map((item, i) => (
-              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
-                <AnnotationDot number={i + 1} />
-                <ItemRow title={item.title} detail={item.detail} />
-              </div>
-            ))}
-          </div>
-
-          {/* Mentorship + Judging */}
-          <div>
-            <SectionLabel label="Mentorship + Judging" index="B2" />
-            {mentorshipItems.map((item, i) => (
-              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
-                <AnnotationDot number={i + 1} />
-                <ItemRow title={item.title} detail={item.detail} />
-              </div>
-            ))}
-          </div>
-
-          {/* Education */}
-          <div>
-            <SectionLabel label="Education" index="C1" />
-            {educationItems.map((item, i) => (
-              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
-                <AnnotationDot number={i + 1} />
-                <ItemRow title={item.title} detail={item.detail} />
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── FOOTER (matches Figma mock) ── */}
-        <footer style={{ marginTop: 56 }}>
-          <div style={{ height: 1, background: "#3a3767" }} />
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 16,
-              marginTop: 20,
-            }}
-          >
+          <div style={{ marginBottom: 20 }}>
             <p
-              className="body-font"
-              style={{ margin: 0, color: "#777a90", fontSize: 13, lineHeight: 1.5 }}
-            >
-              Designed with love, coffee, lots of cat videos, hot girl music &amp; channeling my inner Taylor Swift
-            </p>
-            <p
-              className="body-font"
+              className="heading-font"
               style={{
-                margin: 0,
-                color: "#777a90",
-                fontSize: 13,
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                whiteSpace: "nowrap",
+                color: "#1b52d7",
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                margin: "0 0 6px",
+                textTransform: "uppercase",
               }}
             >
-              <a
-                href="https://www.linkedin.com/in/shruthiandru"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "#777a90", textDecoration: "none" }}
-              >
-                LinkedIn
-              </a>
-              <span style={{ color: "#3a3767" }}>|</span>
-              <a
-                href="mailto:shruthiandru@gmail.com"
-                style={{ color: "#777a90", textDecoration: "none" }}
-              >
-                shruthiandru@gmail.com
-              </a>
-              <span style={{ color: "#3a3767" }}>|</span>
-              <span>Shruthi Andru . 2026</span>
+              /At Present
+            </p>
+            <p
+              className="body-font"
+              style={{ color: "#777a90", fontSize: 15, lineHeight: 1.65, margin: 0, maxWidth: 680 }}
+            >
+              She is currently{" "}
+              <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>
+                designing harness infrastructure for legacy enterprise systems
+              </strong>{" "}
+              at Adobe and is fighting an uphill battle for{" "}
+              <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>
+                redefining the role of Design at Adobe
+              </strong>{" "}
+              in this new AI Era.
+              <br /><br />
+              She serves as a bridge between Scientific research and Engineering,{" "}
+              <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>facilitating workshops between Scientific Research & Engineering</strong>{" "}
+              and{" "}
+              <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>consults with Product Teams</strong>{" "}
+              to improve their design processes through AI enablement.
+              <br /><br />
+              She also serves on the grant panel committee at Adobe and regularly volunteers her time for Pro Bono design services. Outside of work, she regularly gives guest lectures in NYC and serves as an industry mentor sponsoring projects for various grad school's studio classes.
             </p>
           </div>
-        </footer>
-      </div>
-    </main>
+
+          <div
+            style={{ marginBottom: 20, paddingLeft: 20, borderLeft: "1px solid rgba(0,83,224,0.2)" }}
+            className="pl-[0px]">
+            <p
+              className="heading-font"
+              style={{
+                color: "#1b52d7",
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                margin: "0 0 4px",
+                textTransform: "uppercase",
+              }}
+            >
+              /Previously
+            </p>
+            <p className="body-font" style={{ color: "#777a90", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+              She had designed for AI Agents and experiences for Enterprise marketing workflows.
+            </p>
+          </div>
+
+          <div className="pl-[0px]" style={{ borderLeft: "1px solid rgba(0,83,224,0.1)" }}>
+            <p
+              className="heading-font"
+              style={{
+                color: "#1b52d7",
+                fontSize: 15,
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                margin: "0 0 4px",
+                textTransform: "uppercase",
+              }}
+            >
+              /Past Life
+            </p>
+            <p className="body-font" style={{ color: "#777a90", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+              An architect in a previous lifetime.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GRID OF SECTIONS ── */}
+      <section className="bp-section-grid">
+        {/* Speaking Engagements */}
+        <div>
+          <SectionLabel label="Speaking Engagements" index="A1" />
+          {speakingEngagements.map((item, i) => (
+            <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+              <AnnotationDot number={i + 1} />
+              <ItemRow title={item.title} detail={item.detail} />
+            </div>
+          ))}
+        </div>
+
+        {/* Patents + Publications */}
+        <div>
+          <SectionLabel label="Patents + Publications" index="A2" />
+          {patentsAndPublications.map((item, i) => (
+            <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+              <AnnotationDot number={i + 1} />
+              <ItemRow title={item.title} detail={item.detail} link={item.link} />
+            </div>
+          ))}
+        </div>
+
+        {/* Teaching */}
+        <div>
+          <SectionLabel label="Teaching" index="B1" />
+          {teachingItems.map((item, i) => (
+            <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+              <AnnotationDot number={i + 1} />
+              <ItemRow title={item.title} detail={item.detail} />
+            </div>
+          ))}
+        </div>
+
+        {/* Mentorship + Judging */}
+        <div>
+          <SectionLabel label="Mentorship + Judging" index="B2" />
+          {mentorshipItems.map((item, i) => (
+            <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+              <AnnotationDot number={i + 1} />
+              <ItemRow title={item.title} detail={item.detail} />
+            </div>
+          ))}
+        </div>
+
+        {/* Education */}
+        <div>
+          <SectionLabel label="Education" index="C1" />
+          {educationItems.map((item, i) => (
+            <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+              <AnnotationDot number={i + 1} />
+              <ItemRow title={item.title} detail={item.detail} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </BlueprintLayout>
   );
 };

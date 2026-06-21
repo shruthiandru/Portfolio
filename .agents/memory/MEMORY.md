@@ -1,0 +1,1 @@
+- [Blueprint portfolio layout & footer](blueprint-portfolio.md) — shared chrome wrapper, route-driven nav, and the footer "links-on-one-line (tagline may wrap)" rule + responsive gotchas.
