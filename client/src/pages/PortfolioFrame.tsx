@@ -309,7 +309,7 @@ export const PortfolioFrame = (): JSX.Element => {
             className="mono"
             style={{ color: "#4d8fff", fontSize: 10, letterSpacing: "0.15em", opacity: 0.55 }}
           >
-            Last Updated - 2026
+            Last Updated 2026
           </div>
         </header>
 
