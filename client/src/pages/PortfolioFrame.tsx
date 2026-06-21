@@ -1,19 +1,56 @@
 import { BlueprintLayout, BlueprintCorner } from "@/components/BlueprintLayout";
 import prisonThesisPdf from "@assets/618f5fdc8fa52f6c7c7e6eaf_Thesis_Presentation-_Redefining_Priso_1782061718970.pdf";
 import toolkitThesisPdf from "@assets/65dce7d32b31d98858ca345b_Final_Documentation_Shruthi_Andru_1782061718971.pdf";
+import decisionFatiguePlanPdf from "@assets/HCI_d_Studio_Practice_Proposals_1782068672510.pdf";
 
-const speakingEngagements = [
+type LinkRef = { label: string; href: string };
+type ListItem = { title: string; detail: string; links?: LinkRef[] };
+
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 24);
+
+const speakingEngagements: ListItem[] = [
   {
     title: "Trust By Design: A Framework for Human-AI Interaction Pattern",
     detail: "UXPA International Conference 2026",
+    links: [
+      {
+        label: "Slides",
+        href: "https://www.figma.com/deck/Fhau08hHbPKovALivuuz5t/UXPA-2026---Trust-By-Design?node-id=1-107&viewport=-95%2C-127%2C0.6&t=UNyHUZ5vJKLP48yZ-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+      },
+      {
+        label: "Speaker Page",
+        href: "https://uxpa2026.org/sessions/trust-by-design-a-framework-for-human-ai-interaction-patterns-in-the-new-era/",
+      },
+    ],
   },
   {
     title: "Human Centered Design and Responsible AI Design",
     detail: "Featured Podcast Guest — Spotlight Sessions",
+    links: [
+      {
+        label: "Podcast",
+        href: "https://creators.spotify.com/pod/profile/spotlight-sessions/episodes/Human-Centered-Design-with-Shruthi-Andru-e37nrel/a-ac4u7h3",
+      },
+    ],
   },
   {
     title: "10 by 10, Lessons from a Non-Linear Career in Design",
     detail: "Invited Speaker — Cooper Hewitt, Smithsonian Design Museum",
+    links: [
+      {
+        label: "Speaker Page",
+        href: "https://www.cooperhewitt.org/2025-design-competition/",
+      },
+      {
+        label: "Slides",
+        href: "https://www.figma.com/deck/QGOi50GH9qESvUn6Btsr8O",
+      },
+    ],
   },
   {
     title: "AI for Designers",
@@ -21,7 +58,7 @@ const speakingEngagements = [
   },
 ];
 
-const teachingItems = [
+const teachingItems: ListItem[] = [
   {
     title: "Studio Practice",
     detail: "Guest Lecturer — School of Visual Arts (SVA), NYC",
@@ -29,10 +66,26 @@ const teachingItems = [
   {
     title: "Interaction Design",
     detail: "Guest Lecturer — The Cooper Union, NYC",
+    links: [
+      {
+        label: "Slides",
+        href: "https://www.figma.com/deck/qYR3TT1YS2dtlfHSZz5ljK",
+      },
+      {
+        label: "Teaching Plan",
+        href: "https://docs.google.com/document/d/1ZizqvHvfRHVrtIWDJNceM8L5mEEU-Spx5B2J-wcvc0E/edit?tab=t.hc5ivyx7qkyu#heading=h.oz5e01re38e4",
+      },
+    ],
   },
   {
     title: "Designing for Decision Fatigue",
     detail: "Industry Sponsor, Mentor & Reviewer — Indiana University Studio Practice",
+    links: [
+      {
+        label: "Teaching Plan",
+        href: decisionFatiguePlanPdf,
+      },
+    ],
   },
 ];
 
@@ -73,8 +126,17 @@ const patentsAndPublications = [
   },
 ];
 
-const mentorshipItems = [
-  { title: "AStudio NYU Design Studio", detail: "Industry Mentor" },
+const mentorshipItems: ListItem[] = [
+  {
+    title: "AStudio NYU Design Studio",
+    detail: "Industry Mentor",
+    links: [
+      {
+        label: "LinkedIn Post",
+        href: "https://www.linkedin.com/posts/nyu-newyorkuniversity-mentorsip-ugcPost-7471208970066677761-TdBl/?highlightedUpdateUrn=urn%3Ali%3AugcPost%3A7471208970066677761&origin=SOCIAL_SHARE&utm_source=share&utm_medium=member_desktop&rcm=ACoAADH7QwwBiBvx0DqJdYEolzP56ND_bgDJC5M",
+      },
+    ],
+  },
   { title: "Adobe Creative Apprenticeship", detail: "Mentor & Reviewer" },
   { title: "Adobe Creative Retreat", detail: "Mentor & Reviewer" },
 ];
@@ -148,11 +210,13 @@ function ItemRow({
   detail,
   link,
   thesis,
+  links,
 }: {
   title: string;
   detail: string;
   link?: string | null;
   thesis?: { label: string; link?: string | null };
+  links?: LinkRef[];
 }) {
   return (
     <div
@@ -219,6 +283,28 @@ function ItemRow({
             thesis.label
           )}
         </p>
+      )}
+      {links && links.length > 0 && (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 6 }}>
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mono"
+              style={{
+                color: "#4d8fff",
+                textDecoration: "underline",
+                fontSize: 11,
+                letterSpacing: "0.05em",
+              }}
+              data-testid={`link-${slug(l.label)}-${slug(title)}`}
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -423,7 +509,7 @@ export const PortfolioFrame = (): JSX.Element => {
           {speakingEngagements.map((item, i) => (
             <div key={i} style={{ display: "flex", marginBottom: 14 }}>
               <AnnotationDot number={i + 1} />
-              <ItemRow title={item.title} detail={item.detail} />
+              <ItemRow title={item.title} detail={item.detail} links={item.links} />
             </div>
           ))}
         </div>
@@ -445,7 +531,7 @@ export const PortfolioFrame = (): JSX.Element => {
           {teachingItems.map((item, i) => (
             <div key={i} style={{ display: "flex", marginBottom: 14 }}>
               <AnnotationDot number={i + 1} />
-              <ItemRow title={item.title} detail={item.detail} />
+              <ItemRow title={item.title} detail={item.detail} links={item.links} />
             </div>
           ))}
         </div>
@@ -456,7 +542,7 @@ export const PortfolioFrame = (): JSX.Element => {
           {mentorshipItems.map((item, i) => (
             <div key={i} style={{ display: "flex", marginBottom: 14 }}>
               <AnnotationDot number={i + 1} />
-              <ItemRow title={item.title} detail={item.detail} />
+              <ItemRow title={item.title} detail={item.detail} links={item.links} />
             </div>
           ))}
         </div>
