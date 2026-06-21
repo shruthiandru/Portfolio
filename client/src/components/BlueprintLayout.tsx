@@ -119,7 +119,7 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
             <img
               src={logoSrc}
               alt="Shruthi Andru logo"
-              style={{ height: 45, width: "auto", display: "block" }}
+              style={{ height: 60, width: "auto", display: "block" }}
               data-testid="img-logo"
             />
           </Link>
