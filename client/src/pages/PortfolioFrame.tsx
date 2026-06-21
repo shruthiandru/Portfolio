@@ -258,7 +258,7 @@ export const PortfolioFrame = (): JSX.Element => {
         >§ WHO IS SHE?</div>
 
         <h1
-          className="heading-font"
+          className="heading-font tb-name"
           style={{
             fontFamily: '"Futura", "Jost", sans-serif',
             fontSize: "clamp(34px, 9.5vw, 108px)",
@@ -274,7 +274,7 @@ export const PortfolioFrame = (): JSX.Element => {
         </h1>
 
         <p
-          className="heading-font"
+          className="heading-font tb-subtitle"
           style={{
             fontSize: "clamp(18px, 3.5vw, 36px)",
             fontWeight: 400,
@@ -298,7 +298,7 @@ export const PortfolioFrame = (): JSX.Element => {
           }}
         >
           <div style={{ width: 8, height: 1, background: "#4d8fff", opacity: 0.5 }} />
-          <span className="mono" style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}>PRODUCT DESIGNER · ADOBE INC.</span>
+          <span className="mono tb-role" style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}>PRODUCT DESIGNER · ADOBE INC.</span>
           <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, rgba(77,143,255,0.4), transparent)" }} />
         </div>
       </section>

@@ -343,6 +343,12 @@ body {
   .bp-footer { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; }
 }
 
+@media (max-width: 640px) {
+  .tb-name { font-size: calc(clamp(34px, 9.5vw, 108px) + 5px) !important; }
+  .tb-subtitle { font-size: calc(clamp(18px, 3.5vw, 36px) + 5px) !important; }
+  .tb-role { font-size: 14px !important; }
+}
+
 /* ── Articles list ── */
 .bp-article-head {
   display: flex;
