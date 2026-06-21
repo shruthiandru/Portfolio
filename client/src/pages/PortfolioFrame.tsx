@@ -218,13 +218,14 @@ export const PortfolioFrame = (): JSX.Element => {
         <h1
           className="heading-font"
           style={{
-            fontFamily: '"Futura", "Century Gothic", sans-serif',
-            fontSize: "clamp(52px, 10vw, 108px)",
+            fontFamily: '"Futura", "Jost", sans-serif',
+            fontSize: "clamp(34px, 9.5vw, 108px)",
             fontWeight: 700,
             lineHeight: 0.92,
             letterSpacing: "-0.01em",
             color: "#c0c7d3",
             margin: 0,
+            whiteSpace: "nowrap",
           }}
         >
           Shruthi Andru
