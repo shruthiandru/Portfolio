@@ -212,7 +212,7 @@ function ItemRow({
                 .replace(/[^a-z0-9]+/g, "-")
                 .replace(/^-|-$/g, "")
                 .slice(0, 24)}`}
-            >
+              className="text-[11px]">
               {thesis.label}
             </a>
           ) : (
