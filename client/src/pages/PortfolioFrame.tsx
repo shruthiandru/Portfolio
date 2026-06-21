@@ -43,12 +43,12 @@ const speakingEngagements: ListItem[] = [
     detail: "Invited Speaker — Cooper Hewitt, Smithsonian Design Museum",
     links: [
       {
-        label: "Speaker Page",
-        href: "https://www.cooperhewitt.org/2025-design-competition/",
-      },
-      {
         label: "Slides",
         href: "https://www.figma.com/deck/QGOi50GH9qESvUn6Btsr8O",
+      },
+      {
+        label: "Speaker Page",
+        href: "https://www.cooperhewitt.org/2025-design-competition/",
       },
     ],
   },
