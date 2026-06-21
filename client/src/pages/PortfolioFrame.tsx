@@ -226,9 +226,7 @@ export const PortfolioFrame = (): JSX.Element => {
             margin: 0,
           }}
         >
-          Shruthi
-          <br />
-          Andru
+          Shruthi Andru
         </h1>
 
         <p
