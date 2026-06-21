@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
 const navItems = [
   { label: "HOME", active: true },
@@ -37,14 +35,13 @@ const teachingItems = [
   },
   {
     title: "Designing for Decision Fatigue",
-    detail:
-      "Industry Sponsor, Mentor & Reviewer — Indiana University Studio Practice",
+    detail: "Industry Sponsor, Mentor & Reviewer — Indiana University Studio Practice",
   },
 ];
 
 const educationItems = [
   {
-    title: "M.S Human Computer interaction & Design",
+    title: "M.S Human Computer Interaction & Design",
     detail: "Indiana University Bloomington",
   },
   {
@@ -57,230 +54,568 @@ const patentsAndPublications = [
   {
     title: "AI Assistant Context Awareness and UI Control",
     detail: "P14488-US",
+    link: null,
   },
   {
-    title:
-      "Graphical User Interface for Progressive Disclosure of Rich Metadata for Data Field Selection",
+    title: "Graphical User Interface for Progressive Disclosure of Rich Metadata for Data Field Selection",
     detail: "P29333-US",
+    link: null,
+  },
+  {
+    title: "Interface Framework for Human-AI Collaboration within Intelligent User Interface Ecosystems",
+    detail: "Preprint on Arxiv",
+    link: "https://doi.org/10.48550/arXiv.2602.22343",
   },
 ];
 
 const mentorshipItems = [
-  {
-    title: "AStudio NYU Design Studio",
-    detail: "Industry Mentor",
-  },
-  {
-    title: "Adobe Creative Apprenticeship",
-    detail: "Mentor & Reviewer",
-  },
-  {
-    title: "Adobe Creative Retreat",
-    detail: "Mentor & Reviewer",
-  },
+  { title: "AStudio NYU Design Studio", detail: "Industry Mentor" },
+  { title: "Adobe Creative Apprenticeship", detail: "Mentor & Reviewer" },
+  { title: "Adobe Creative Retreat", detail: "Mentor & Reviewer" },
 ];
 
-export const PortfolioFrame = (): JSX.Element => {
+function BlueprintCorner({
+  position,
+}: {
+  position: "tl" | "tr" | "bl" | "br";
+}) {
+  const styles: Record<string, React.CSSProperties> = {
+    tl: { top: 0, left: 0, borderWidth: "1.5px 0 0 1.5px" },
+    tr: { top: 0, right: 0, borderWidth: "1.5px 1.5px 0 0" },
+    bl: { bottom: 0, left: 0, borderWidth: "0 0 1.5px 1.5px" },
+    br: { bottom: 0, right: 0, borderWidth: "0 1.5px 1.5px 0" },
+  };
   return (
-    <main className="min-h-screen w-full bg-[#020035]">
-      <div className="mx-auto flex min-h-screen w-full max-w-[1280px] justify-center px-6 py-10 sm:px-10 lg:px-16">
-        <div className="w-full max-w-[860px]">
-          <header className="mb-10 flex items-center gap-1">
+    <div
+      style={{
+        position: "absolute",
+        width: 20,
+        height: 20,
+        borderColor: "rgba(0,83,224,0.7)",
+        borderStyle: "solid",
+        ...styles[position],
+      }}
+    />
+  );
+}
+
+function AnnotationDot({ number }: { number: number }) {
+  return (
+    <span
+      className="mono"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 18,
+        height: 18,
+        borderRadius: "50%",
+        border: "1px solid rgba(0,83,224,0.6)",
+        color: "#4d8fff",
+        fontSize: 9,
+        flexShrink: 0,
+        marginRight: 8,
+        opacity: 0.85,
+      }}
+    >
+      {number}
+    </span>
+  );
+}
+
+function SectionLabel({ label, index }: { label: string; index: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+      <span
+        className="mono"
+        style={{
+          color: "#4d8fff",
+          fontSize: 9,
+          letterSpacing: "0.15em",
+          opacity: 0.6,
+          minWidth: 24,
+        }}
+      >
+        {index}
+      </span>
+      <h3
+        className="heading-font"
+        style={{
+          color: "#0053e0",
+          fontSize: 13,
+          fontWeight: 600,
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          margin: 0,
+        }}
+      >
+        {label}
+      </h3>
+      <div
+        style={{
+          flex: 1,
+          height: 1,
+          background: "linear-gradient(to right, rgba(0,83,224,0.4), transparent)",
+          maxWidth: 80,
+        }}
+      />
+    </div>
+  );
+}
+
+function ItemRow({ title, detail, link }: { title: string; detail: string; link?: string | null }) {
+  return (
+    <div
+      style={{
+        borderLeft: "1px solid rgba(0,83,224,0.3)",
+        paddingLeft: 12,
+        position: "relative",
+        marginBottom: 12,
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          left: -1,
+          top: 0,
+          width: 1,
+          height: 10,
+          background: "#0053e0",
+        }}
+      />
+      <p
+        className="body-font"
+        style={{ margin: 0, color: "#c0c7d3", fontSize: 14, fontWeight: 500, lineHeight: 1.4 }}
+      >
+        {title}
+      </p>
+      <p
+        className="mono"
+        style={{ margin: "3px 0 0", color: "#5a6080", fontSize: 11, letterSpacing: "0.05em" }}
+      >
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#4d8fff", textDecoration: "underline" }}
+          >
+            {detail}
+          </a>
+        ) : (
+          detail
+        )}
+      </p>
+    </div>
+  );
+}
+
+export const PortfolioFrame = (): JSX.Element => {
+  const [activeNav, setActiveNav] = useState("HOME");
+
+  return (
+    <main
+      className="blueprint-grid"
+      style={{ minHeight: "100vh", width: "100%", position: "relative" }}
+    >
+      {/* Page-level corner markers */}
+      <BlueprintCorner position="tl" />
+      <BlueprintCorner position="tr" />
+      <BlueprintCorner position="bl" />
+      <BlueprintCorner position="br" />
+
+      {/* Top ruler annotation */}
+      <div
+        className="mono"
+        style={{
+          position: "absolute",
+          top: 10,
+          left: "50%",
+          transform: "translateX(-50%)",
+          color: "#4d8fff",
+          fontSize: 9,
+          letterSpacing: "0.18em",
+          opacity: 0.4,
+          pointerEvents: "none",
+        }}
+      >
+        PORTFOLIO — REV.2025 — SHRUTHI ANDRU
+      </div>
+
+      {/* Left vertical label */}
+      <div
+        className="mono"
+        style={{
+          position: "fixed",
+          left: 12,
+          top: "50%",
+          transform: "translateY(-50%) rotate(-90deg)",
+          color: "#0053e0",
+          fontSize: 9,
+          letterSpacing: "0.2em",
+          opacity: 0.35,
+          pointerEvents: "none",
+          whiteSpace: "nowrap",
+        }}
+      >
+        DESIGN · HCI · AI · ARCHITECTURE
+      </div>
+
+      {/* Right vertical label */}
+      <div
+        className="mono"
+        style={{
+          position: "fixed",
+          right: 12,
+          top: "50%",
+          transform: "translateY(-50%) rotate(90deg)",
+          color: "#0053e0",
+          fontSize: 9,
+          letterSpacing: "0.2em",
+          opacity: 0.35,
+          pointerEvents: "none",
+          whiteSpace: "nowrap",
+        }}
+      >
+        SHEET 01 OF 01 · SCALE: NTS
+      </div>
+
+      <div
+        style={{
+          maxWidth: 900,
+          margin: "0 auto",
+          padding: "48px 32px 80px",
+          position: "relative",
+        }}
+      >
+        {/* ── HEADER / NAV ── */}
+        <header
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: 48,
+          }}
+        >
+          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
             {navItems.map((item) => (
-              <Button
+              <button
                 key={item.label}
                 type="button"
-                variant="ghost"
-                className={
-                  item.active
-                    ? "h-auto rounded-lg border-2 border-[#292929] bg-[#2500b2] px-3 py-[7px] font-component-m-medium text-[length:var(--component-m-medium-font-size)] font-[number:var(--component-m-medium-font-weight)] leading-[var(--component-m-medium-line-height)] tracking-[var(--component-m-medium-letter-spacing)] text-neutral-100 [font-style:var(--component-m-medium-font-style)] hover:bg-[#2500b2] hover:text-neutral-100"
-                    : "h-auto rounded-lg bg-transparent px-3 py-[7px] font-component-m-medium text-[length:var(--component-m-medium-font-size)] font-[number:var(--component-m-medium-font-weight)] leading-[var(--component-m-medium-line-height)] tracking-[var(--component-m-medium-letter-spacing)] text-[#c0c7d3] [font-style:var(--component-m-medium-font-style)] hover:bg-transparent hover:text-[#c0c7d3]"
-                }
+                onClick={() => setActiveNav(item.label)}
+                className={activeNav === item.label ? "nav-active" : "nav-inactive"}
               >
                 {item.label}
-              </Button>
+              </button>
             ))}
-          </header>
-          <section className="space-y-6">
-            <h1 className="[font-family:'Inter',Helvetica] text-[56px] font-bold leading-none tracking-[0] text-[#c0c7d3] sm:text-[72px] lg:text-[108.2px]">
-              Shruthi Andru
-            </h1>
-            <p className="[font-family:'Inter',Helvetica] text-[24px] font-bold leading-tight tracking-[0] sm:text-[30px] lg:text-[40.4px]">
-              <span className="text-[#0053e0]">is a</span>
-              <span className="text-[#777888]">&nbsp;</span>
-              <span className="text-[#c0c7d3]">Designer</span>
-              <span className="text-[#c0c6d4]">&nbsp;</span>
-              <span className="text-[#0053e0]">designing for Designers</span>
-            </p>
-          </section>
-          <section className="mt-12 max-w-[744px] [font-family:'Inter',Helvetica] text-[17.3px] tracking-[0]">
-            <h2 className="font-semibold leading-[23px] text-[#1b52d7]">
-              /At Present
-            </h2>
-            <p className="mt-1 font-normal leading-[23px] text-[#777a90]">
-              She is currently{" "}
-              <span className="font-semibold">
-                designing harness infrastructure for legacy enterprise systems
-              </span>{" "}
-              at Adobe and is fighting an uphill battle for{" "}
-              <span className="font-semibold">
-                redefining the role of Design at Adobe
-              </span>{" "}
-              this new AI Era.
-              <br />
-              She serves as a bridge between Scientific research and
-              Engineering,{" "}
-              <span className="font-semibold">facilitating workshops</span> and{" "}
-              <span className="font-semibold">consults with Product Teams</span>{" "}
-              to improve their design processes through AI enablement.
-              <br />
-              She also serves on the grant panel committee at Adobe and
-              regularly volunteers her time for Pro Bono design services. Mostly
-              recently at
-              <br />
-              Outside of work, she regularly gives guest lectures in NYC and
-              serves as an industry mentor sponsoring projects for various grad
-              school&apos;s studio classes
-            </p>
-          </section>
-          <section className="mt-12 max-w-[744px] [font-family:'Inter',Helvetica] text-[17.3px] tracking-[0]">
-            <h2 className="font-semibold leading-normal text-[#1b52d7]">
-              /Previously
-            </h2>
-            <p className="font-normal leading-normal text-[#777a91]">
-              She had designed for AI Agents and experiences for Enterprise
-              marketing workflows
-            </p>
-          </section>
-          <section className="mt-8 max-w-[744px] [font-family:'Inter',Helvetica] text-[17.3px] tracking-[0]">
-            <h2 className="font-semibold leading-normal text-[#1b52d7]">
-              /Past Life
-            </h2>
-            <p className="font-normal leading-normal text-[#777a91]">
-              An architect in a previous lifetime
-            </p>
-          </section>
-          <section className="mt-16 grid grid-cols-1 gap-x-[42px] gap-y-10 md:grid-cols-[361px_341px]">
-            <Card className="border-0 bg-transparent shadow-none">
-              <CardContent className="p-0">
-                <section className="flex flex-col gap-4">
-                  <h3 className="[font-family:'Inter',Helvetica] text-[17.3px] font-semibold tracking-[0] text-[#1b52d7]">
-                    Speaking Engagements
-                  </h3>
-                  <div className="flex flex-col gap-3">
-                    {speakingEngagements.map((item) => (
-                      <p
-                        key={item.title}
-                        className="[font-family:'Inter',Helvetica] text-[17.3px] font-normal leading-normal tracking-[0] text-[#777a91]"
-                      >
-                        <span className="font-medium">{item.title}</span>
-                        <span> | </span>
-                        <span className="font-light">{item.detail}</span>
-                      </p>
-                    ))}
-                  </div>
-                </section>
-              </CardContent>
-            </Card>
-            <Card className="border-0 bg-transparent shadow-none">
-              <CardContent className="p-0">
-                <section className="flex flex-col gap-4">
-                  <h3 className="[font-family:'Inter',Helvetica] text-[17.3px] font-semibold tracking-[0] text-[#1b52d7]">
-                    Patents + Publications
-                  </h3>
-                  <div className="flex flex-col gap-3">
-                    {patentsAndPublications.map((item) => (
-                      <p
-                        key={item.title}
-                        className="[font-family:'Inter',Helvetica] text-[17.3px] font-normal leading-normal tracking-[0] text-[#777a91]"
-                      >
-                        <span className="font-medium">{item.title} </span>
-                        <span className="font-light">| {item.detail}</span>
-                      </p>
-                    ))}
-                    <p className="[font-family:'Inter',Helvetica] text-[17.3px] font-normal leading-normal tracking-[0] text-[#777a91]">
-                      <span className="font-medium">
-                        Interface Framework for Human-AI Collaboration within
-                        Intelligent User Interface Ecosystems |
-                      </span>{" "}
-                      <span className="font-light">Preprint on Arxiv: </span>
-                      <a
-                        href="https://doi.org/10.48550/arXiv.2602.22343"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-light underline"
-                      >
-                        https://doi.org/10.48550/arXiv.2602.2234
-                      </a>
-                    </p>
-                  </div>
-                </section>
-              </CardContent>
-            </Card>
-            <Card className="border-0 bg-transparent shadow-none">
-              <CardContent className="p-0">
-                <section className="flex flex-col gap-4">
-                  <h3 className="[font-family:'Inter',Helvetica] text-[17.3px] font-semibold tracking-[0] text-[#1b52d7]">
-                    Teaching
-                  </h3>
-                  <div className="flex flex-col gap-3">
-                    {teachingItems.map((item) => (
-                      <p
-                        key={item.title}
-                        className="[font-family:'Inter',Helvetica] text-[17.3px] font-normal leading-normal tracking-[0] text-[#777a91]"
-                      >
-                        <span className="font-medium">{item.title}</span>
-                        <span> | </span>
-                        <span className="font-light">{item.detail}</span>
-                      </p>
-                    ))}
-                  </div>
-                </section>
-              </CardContent>
-            </Card>
-            <Card className="border-0 bg-transparent shadow-none md:mt-[-2px]">
-              <CardContent className="p-0">
-                <section className="flex flex-col gap-4">
-                  <h3 className="[font-family:'Inter',Helvetica] text-[17.3px] font-semibold tracking-[0] text-[#1b52d7]">
-                    Mentorship + Judging
-                  </h3>
-                  <div className="flex flex-col gap-3">
-                    {mentorshipItems.map((item) => (
-                      <p
-                        key={item.title}
-                        className="[font-family:'Inter',Helvetica] text-[17.3px] font-normal leading-normal tracking-[0] text-[#777a91]"
-                      >
-                        <span className="font-medium">{item.title}</span>
-                        <span className="font-light"> | {item.detail}</span>
-                      </p>
-                    ))}
-                  </div>
-                </section>
-              </CardContent>
-            </Card>
-            <Card className="border-0 bg-transparent shadow-none md:col-start-1">
-              <CardContent className="p-0">
-                <section className="flex flex-col gap-4">
-                  <h3 className="[font-family:'Inter',Helvetica] text-[17.3px] font-semibold tracking-[0] text-[#1b52d7]">
-                    Education
-                  </h3>
-                  <div className="flex flex-col gap-3">
-                    {educationItems.map((item) => (
-                      <p
-                        key={item.title}
-                        className="[font-family:'Inter',Helvetica] text-[17.3px] font-normal leading-normal tracking-[0] text-[#777a91]"
-                      >
-                        <span className="font-medium">{item.title}</span>
-                        <span className="font-light"> | {item.detail}</span>
-                      </p>
-                    ))}
-                  </div>
-                </section>
-              </CardContent>
-            </Card>
-          </section>
-          <Separator className="mt-14 h-px max-w-[742px] bg-[#3a3767]" />
+          </div>
+          <div
+            className="mono"
+            style={{ color: "#4d8fff", fontSize: 10, letterSpacing: "0.15em", opacity: 0.55 }}
+          >
+            DWG NO. SA-001
+          </div>
+        </header>
+
+        {/* ── TITLE BLOCK ── */}
+        <section
+          style={{
+            position: "relative",
+            border: "1px solid rgba(0,83,224,0.18)",
+            padding: "32px 28px",
+            marginBottom: 40,
+          }}
+        >
+          <BlueprintCorner position="tl" />
+          <BlueprintCorner position="tr" />
+          <BlueprintCorner position="bl" />
+          <BlueprintCorner position="br" />
+
+          {/* Sheet ref tag */}
+          <div
+            className="mono"
+            style={{
+              position: "absolute",
+              top: -10,
+              left: 20,
+              background: "#020035",
+              padding: "0 8px",
+              color: "#4d8fff",
+              fontSize: 9,
+              letterSpacing: "0.15em",
+              opacity: 0.7,
+            }}
+          >
+            § TITLE BLOCK
+          </div>
+
+          <h1
+            className="heading-font"
+            style={{
+              fontSize: "clamp(52px, 10vw, 108px)",
+              fontWeight: 700,
+              lineHeight: 0.92,
+              letterSpacing: "-0.01em",
+              color: "#c0c7d3",
+              margin: 0,
+            }}
+          >
+            Shruthi
+            <br />
+            Andru
+          </h1>
+
+          <p
+            className="heading-font"
+            style={{
+              fontSize: "clamp(18px, 3.5vw, 36px)",
+              fontWeight: 400,
+              marginTop: 16,
+              lineHeight: 1.2,
+              letterSpacing: "0.02em",
+            }}
+          >
+            <span style={{ color: "#0053e0" }}>is a </span>
+            <span style={{ color: "#c0c7d3", fontWeight: 600 }}>Designer</span>
+            <span style={{ color: "#0053e0" }}> designing for Designers</span>
+          </p>
+
+          {/* Dimension annotation line */}
+          <div
+            style={{
+              marginTop: 20,
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <div style={{ width: 8, height: 1, background: "#4d8fff", opacity: 0.5 }} />
+            <span className="mono" style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}>
+              PRINCIPAL DESIGNER · ADOBE INC.
+            </span>
+            <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, rgba(77,143,255,0.4), transparent)" }} />
+          </div>
+        </section>
+
+        {/* ── BIO SECTIONS ── */}
+        <section style={{ marginBottom: 36, position: "relative" }}>
+          <div
+            className="mono"
+            style={{
+              position: "absolute",
+              top: -9,
+              left: 0,
+              background: "#020035",
+              paddingRight: 8,
+              color: "#4d8fff",
+              fontSize: 9,
+              letterSpacing: "0.15em",
+              opacity: 0.6,
+            }}
+          >
+            § NARRATIVE
+          </div>
+          <div
+            style={{
+              borderTop: "1px solid rgba(0,83,224,0.25)",
+              paddingTop: 20,
+            }}
+          >
+            <div style={{ marginBottom: 20 }}>
+              <p
+                className="heading-font"
+                style={{
+                  color: "#1b52d7",
+                  fontSize: 15,
+                  fontWeight: 600,
+                  letterSpacing: "0.1em",
+                  margin: "0 0 6px",
+                  textTransform: "uppercase",
+                }}
+              >
+                /At Present
+              </p>
+              <p
+                className="body-font"
+                style={{ color: "#777a90", fontSize: 15, lineHeight: 1.65, margin: 0, maxWidth: 680 }}
+              >
+                She is currently{" "}
+                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>
+                  designing harness infrastructure for legacy enterprise systems
+                </strong>{" "}
+                at Adobe and is fighting an uphill battle for{" "}
+                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>
+                  redefining the role of Design at Adobe
+                </strong>{" "}
+                in this new AI Era.
+                <br /><br />
+                She serves as a bridge between Scientific research and Engineering,{" "}
+                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>facilitating workshops</strong>{" "}
+                and{" "}
+                <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>consults with Product Teams</strong>{" "}
+                to improve their design processes through AI enablement.
+                <br /><br />
+                She also serves on the grant panel committee at Adobe and regularly volunteers her time for Pro Bono design services. Outside of work, she regularly gives guest lectures in NYC and serves as an industry mentor sponsoring projects for various grad school's studio classes.
+              </p>
+            </div>
+
+            <div style={{ marginBottom: 20, paddingLeft: 20, borderLeft: "1px solid rgba(0,83,224,0.2)" }}>
+              <p
+                className="heading-font"
+                style={{
+                  color: "#1b52d7",
+                  fontSize: 15,
+                  fontWeight: 600,
+                  letterSpacing: "0.1em",
+                  margin: "0 0 4px",
+                  textTransform: "uppercase",
+                }}
+              >
+                /Previously
+              </p>
+              <p className="body-font" style={{ color: "#777a90", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+                She had designed for AI Agents and experiences for Enterprise marketing workflows.
+              </p>
+            </div>
+
+            <div style={{ paddingLeft: 40, borderLeft: "1px solid rgba(0,83,224,0.1)" }}>
+              <p
+                className="heading-font"
+                style={{
+                  color: "#1b52d7",
+                  fontSize: 15,
+                  fontWeight: 600,
+                  letterSpacing: "0.1em",
+                  margin: "0 0 4px",
+                  textTransform: "uppercase",
+                }}
+              >
+                /Past Life
+              </p>
+              <p className="body-font" style={{ color: "#777a90", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+                An architect in a previous lifetime.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── DIVIDER ── */}
+        <div className="blueprint-divider" style={{ margin: "32px 0" }} />
+
+        {/* ── GRID OF SECTIONS ── */}
+        <section
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gap: "40px 48px",
+            position: "relative",
+          }}
+        >
+          {/* Speaking Engagements */}
+          <div>
+            <SectionLabel label="Speaking Engagements" index="A1" />
+            {speakingEngagements.map((item, i) => (
+              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+                <AnnotationDot number={i + 1} />
+                <ItemRow title={item.title} detail={item.detail} />
+              </div>
+            ))}
+          </div>
+
+          {/* Patents + Publications */}
+          <div>
+            <SectionLabel label="Patents + Publications" index="A2" />
+            {patentsAndPublications.map((item, i) => (
+              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+                <AnnotationDot number={i + 1} />
+                <ItemRow title={item.title} detail={item.detail} link={item.link} />
+              </div>
+            ))}
+          </div>
+
+          {/* Teaching */}
+          <div>
+            <SectionLabel label="Teaching" index="B1" />
+            {teachingItems.map((item, i) => (
+              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+                <AnnotationDot number={i + 1} />
+                <ItemRow title={item.title} detail={item.detail} />
+              </div>
+            ))}
+          </div>
+
+          {/* Mentorship + Judging */}
+          <div>
+            <SectionLabel label="Mentorship + Judging" index="B2" />
+            {mentorshipItems.map((item, i) => (
+              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+                <AnnotationDot number={i + 1} />
+                <ItemRow title={item.title} detail={item.detail} />
+              </div>
+            ))}
+          </div>
+
+          {/* Education */}
+          <div>
+            <SectionLabel label="Education" index="C1" />
+            {educationItems.map((item, i) => (
+              <div key={i} style={{ display: "flex", marginBottom: 14 }}>
+                <AnnotationDot number={i + 1} />
+                <ItemRow title={item.title} detail={item.detail} />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── TITLE BLOCK FOOTER ── */}
+        <div className="blueprint-divider" style={{ margin: "40px 0 20px" }} />
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 1,
+            border: "1px solid rgba(0,83,224,0.2)",
+            padding: 0,
+          }}
+        >
+          {[
+            { label: "DRAWN BY", value: "SA" },
+            { label: "DATE", value: "2025" },
+            { label: "SCALE", value: "NTS" },
+            { label: "SHEET", value: "01 / 01" },
+          ].map((cell) => (
+            <div
+              key={cell.label}
+              style={{
+                borderRight: "1px solid rgba(0,83,224,0.2)",
+                padding: "10px 14px",
+              }}
+            >
+              <p className="mono" style={{ margin: 0, fontSize: 8, color: "#4d8fff", opacity: 0.5, letterSpacing: "0.15em" }}>
+                {cell.label}
+              </p>
+              <p className="mono" style={{ margin: "2px 0 0", fontSize: 13, color: "#c0c7d3", letterSpacing: "0.1em" }}>
+                {cell.value}
+              </p>
+            </div>
+          ))}
         </div>
+
+        {/* Bottom annotation */}
+        <p
+          className="mono"
+          style={{
+            textAlign: "center",
+            marginTop: 24,
+            color: "#4d8fff",
+            fontSize: 9,
+            letterSpacing: "0.2em",
+            opacity: 0.35,
+          }}
+        >
+          ALL DIMENSIONS ARE IN CONCEPTUAL UNITS · NOT FOR CONSTRUCTION
+        </p>
       </div>
     </main>
   );

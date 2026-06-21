@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -7,205 +10,240 @@
   }
 }
 
-@import url("https://fonts.googleapis.com/css?family=Inter:700,600,400");
-
 :root {
-  --component-m-medium-font-family: "Adobe Clean Spectrum VF", Helvetica;
-  --component-m-medium-font-size: 14px;
+  --blueprint-bg: #020035;
+  --blueprint-grid: rgba(0, 83, 224, 0.12);
+  --blueprint-grid-major: rgba(0, 83, 224, 0.22);
+  --blueprint-blue: #0053e0;
+  --blueprint-blue-mid: #1b52d7;
+  --blueprint-blue-bright: #4d8fff;
+  --blueprint-text: #c0c7d3;
+  --blueprint-muted: #777a90;
+  --blueprint-accent: #2500b2;
+  --blueprint-line: rgba(192, 199, 211, 0.2);
+
+  --component-m-medium-font-family: "Rajdhani", sans-serif;
+  --component-m-medium-font-size: 13px;
   --component-m-medium-font-style: normal;
   --component-m-medium-font-weight: 500;
-  --component-m-medium-letter-spacing: 0px;
+  --component-m-medium-letter-spacing: 0.08em;
   --component-m-medium-line-height: 18px;
 }
 
 :root {
-  --animate-spin: spin 1s linear infinite;
+  --background: 236 100% 11%;
+  --foreground: 213 31% 82%;
+  --muted: 230 50% 15%;
+  --muted-foreground: 230 15% 55%;
+  --popover: 236 100% 6%;
+  --popover-foreground: 213 31% 82%;
+  --border: 220 30% 25%;
+  --input: 220 30% 25%;
+  --card: transparent;
+  --card-foreground: 213 31% 82%;
+  --primary: 220 85% 55%;
+  --primary-foreground: 236 100% 4%;
+  --secondary: 230 50% 20%;
+  --secondary-foreground: 213 31% 82%;
+  --accent: 220 85% 35%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 220 85% 55%;
+  --radius: 0px;
 }
 
-.animate-fade-in {
-  animation: fade-in 1s var(--animation-delay, 0s) ease forwards;
+* {
+  @apply border-border;
+  box-sizing: border-box;
 }
 
-.animate-fade-up {
-  animation: fade-up 1s var(--animation-delay, 0s) ease forwards;
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-.animate-marquee {
-  animation: marquee var(--duration) infinite linear;
+body {
+  background-color: var(--blueprint-bg);
+  color: var(--blueprint-text);
+  font-family: "Space Grotesk", sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  min-height: 100vh;
 }
 
-.animate-marquee-vertical {
-  animation: marquee-vertical var(--duration) linear infinite;
+.blueprint-grid {
+  background-color: var(--blueprint-bg);
+  background-image:
+    linear-gradient(var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(var(--blueprint-grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-grid-major) 1px, transparent 1px);
+  background-size:
+    20px 20px,
+    20px 20px,
+    100px 100px,
+    100px 100px;
+  background-position:
+    -1px -1px,
+    -1px -1px,
+    -1px -1px,
+    -1px -1px;
 }
 
-.animate-shimmer {
-  animation: shimmer 8s infinite;
+.blueprint-corner::before,
+.blueprint-corner::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--blueprint-blue);
+  border-style: solid;
 }
 
-.animate-spin {
-  animation: var(--animate-spin);
+.corner-tl::before { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+.corner-tr::after  { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
+
+.mono { font-family: "Share Tech Mono", monospace; }
+.heading-font { font-family: "Rajdhani", sans-serif; }
+.body-font { font-family: "Space Grotesk", sans-serif; }
+
+.annotation-line {
+  position: relative;
+}
+.annotation-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: var(--blueprint-blue);
+  transform: translateY(-50%);
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(1turn);
-  }
+.dim-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blueprint-blue-bright);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+.dim-line::before,
+.dim-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+.dim-line::before { 
+  width: 8px;
+  flex: none;
+}
+.dim-line::after { 
+  display: none;
 }
 
-@keyframes image-glow {
-  0% {
-    opacity: 0;
-    animation-timing-function: cubic-bezier(0.74, 0.25, 0.76, 1);
-  }
+.blueprint-section-label {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blueprint-blue-bright);
+  opacity: 0.75;
+}
 
-  10% {
-    opacity: 0.7;
-    animation-timing-function: cubic-bezier(0.12, 0.01, 0.08, 0.99);
-  }
+.blueprint-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--blueprint-blue-mid) 10%,
+    rgba(0, 83, 224, 0.4) 80%,
+    transparent
+  );
+  position: relative;
+}
 
-  to {
-    opacity: 0.4;
-  }
+.crosshair {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.crosshair::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 1px;
+  background: var(--blueprint-blue);
+  opacity: 0.6;
+}
+.crosshair::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 12px;
+  background: var(--blueprint-blue);
+  opacity: 0.6;
+}
+
+.nav-active {
+  background: rgba(37, 0, 178, 0.5);
+  border: 1px solid rgba(0, 83, 224, 0.5);
+  color: #c0c7d3;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 5px 12px;
+}
+
+.nav-inactive {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #777a90;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  padding: 5px 12px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-inactive:hover {
+  color: #c0c7d3;
+  border-color: rgba(0, 83, 224, 0.3);
+}
+
+.card-data {
+  border-left: 1px solid rgba(0, 83, 224, 0.35);
+  padding-left: 12px;
+  position: relative;
+}
+.card-data::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 1px;
+  height: 8px;
+  background: var(--blueprint-blue);
 }
 
 @keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
 }
-
 @keyframes fade-up {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
-@keyframes shimmer {
-  0%,
-  90%,
-  to {
-    background-position: calc(-100% - var(--shimmer-width)) 0;
-  }
-
-  30%,
-  60% {
-    background-position: calc(100% + var(--shimmer-width)) 0;
-  }
-}
-
-@keyframes marquee {
-  0% {
-    transform: translate(0);
-  }
-
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-  }
-}
-
-@keyframes marquee-vertical {
-  0% {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-
-    --card: transparent;
-    --card-foreground: 222.2 47.4% 11.2%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 215 20.2% 65.1%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
-
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
-
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
-
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-
-    --card: transparent;
-    --card-foreground: 213 31% 91%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
-
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 216 34% 17%;
-
-    --radius: 0.5rem;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
-  }
-}
+.animate-fade-in { animation: fade-in 0.8s ease forwards; }
+.animate-fade-up { animation: fade-up 0.9s ease forwards; }
+.animate-blink   { animation: blink 1.4s step-start infinite; }
