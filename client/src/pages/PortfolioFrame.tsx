@@ -317,7 +317,7 @@ export const PortfolioFrame = (): JSX.Element => {
               <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>facilitating workshops between Scientific Research & Engineering</strong>{" "}
               and{" "}
               <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>consults with Product Teams</strong>{" "}
-              to improve their design processes through AI enablement.
+              <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>to improve their design processes through AI enablement.</strong>
               <br /><br />
               She also serves on the grant panel committee at Adobe and regularly volunteers her time for Pro Bono design services. Outside of work, she regularly gives guest lectures in NYC and serves as an industry mentor sponsoring projects for various grad school's studio classes.
             </p>
