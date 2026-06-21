@@ -386,9 +386,7 @@ export const PortfolioFrame = (): JSX.Element => {
             }}
           >
             <div style={{ width: 8, height: 1, background: "#4d8fff", opacity: 0.5 }} />
-            <span className="mono" style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}>
-              PRINCIPAL DESIGNER · ADOBE INC.
-            </span>
+            <span className="mono" style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}>PRODUCT DESIGNER · ADOBE INC.</span>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, rgba(77,143,255,0.4), transparent)" }} />
           </div>
         </section>
