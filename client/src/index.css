@@ -347,6 +347,13 @@ body {
   .tb-name { font-size: calc(clamp(34px, 9.5vw, 108px) + 5px) !important; }
   .tb-subtitle { font-size: calc(clamp(18px, 3.5vw, 36px) + 5px) !important; }
   .tb-role { font-size: 14px !important; }
+  .tb-block { text-align: center; }
+  .tb-anno { justify-content: center !important; }
+  .tb-anno > div:last-child {
+    flex: 0 0 8px !important;
+    width: 8px !important;
+    background: rgba(77, 143, 255, 0.5) !important;
+  }
 }
 
 /* ── Articles list ── */

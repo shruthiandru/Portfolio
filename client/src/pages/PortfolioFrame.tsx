@@ -229,6 +229,7 @@ export const PortfolioFrame = (): JSX.Element => {
     <BlueprintLayout>
       {/* ── TITLE BLOCK ── */}
       <section
+        className="tb-block"
         style={{
           position: "relative",
           border: "1px solid rgba(0,83,224,0.18)",
@@ -290,6 +291,7 @@ export const PortfolioFrame = (): JSX.Element => {
 
         {/* Dimension annotation line */}
         <div
+          className="tb-anno"
           style={{
             marginTop: 20,
             display: "flex",
