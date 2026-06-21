@@ -149,7 +149,10 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
                 LinkedIn
               </a>
               <span className="sep">|</span>
-              <a href="mailto:shruthiandru@gmail.com" data-testid="link-email">
+              <a
+                href="mailto:shruthiandru@gmail.com"
+                data-testid="link-email"
+                className="text-[9px]">
                 shruthiandru@gmail.com
               </a>
               <span className="sep">|</span>
