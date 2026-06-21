@@ -322,7 +322,7 @@ export const PortfolioFrame = (): JSX.Element => {
           </div>
 
           <div
-            style={{ marginBottom: 20, paddingLeft: 20, borderLeft: "1px solid rgba(0,83,224,0.2)" }}
+            style={{ marginBottom: 20, paddingLeft: 0, borderLeft: "1px solid rgba(0,83,224,0.2)" }}
             className="pl-[0px]">
             <p
               className="heading-font"
