@@ -273,9 +273,7 @@ export const PortfolioFrame = (): JSX.Element => {
             letterSpacing: "0.15em",
             opacity: 0.6,
           }}
-        >
-          § NARRATIVE
-        </div>
+        >§ WHAT DOES SHE DO?</div>
         <div
           style={{
             borderTop: "1px solid rgba(0,83,224,0.25)",
