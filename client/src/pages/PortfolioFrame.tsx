@@ -301,7 +301,7 @@ export const PortfolioFrame = (): JSX.Element => {
             </p>
             <p
               className="body-font"
-              style={{ color: "#777a90", fontSize: 15, lineHeight: 1.65, margin: 0, maxWidth: 680 }}
+              style={{ color: "#777a90", fontSize: 15, lineHeight: 1.65, margin: 0 }}
             >
               She is currently{" "}
               <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>
