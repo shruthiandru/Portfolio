@@ -1,7 +1,6 @@
 import { BlueprintLayout, BlueprintCorner } from "@/components/BlueprintLayout";
 import prisonThesisPdf from "@assets/618f5fdc8fa52f6c7c7e6eaf_Thesis_Presentation-_Redefining_Priso_1782061718970.pdf";
 import toolkitThesisPdf from "@assets/65dce7d32b31d98858ca345b_Final_Documentation_Shruthi_Andru_1782061718971.pdf";
-import decisionFatiguePlanPdf from "@assets/HCI_d_Studio_Practice_Proposals_1782067930244.pdf";
 
 type LinkRef = { label: string; href: string };
 type ListItem = { title: string; detail: string; links?: LinkRef[] };
@@ -80,12 +79,6 @@ const teachingItems: ListItem[] = [
   {
     title: "Designing for Decision Fatigue",
     detail: "Industry Sponsor, Mentor & Reviewer — Indiana University Studio Practice",
-    links: [
-      {
-        label: "Teaching Plan",
-        href: decisionFatiguePlanPdf,
-      },
-    ],
   },
 ];
 
