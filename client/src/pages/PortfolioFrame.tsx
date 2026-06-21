@@ -258,7 +258,6 @@ export const PortfolioFrame = (): JSX.Element => {
           <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, rgba(77,143,255,0.4), transparent)" }} />
         </div>
       </section>
-
       {/* ── BIO SECTIONS ── */}
       <section style={{ marginBottom: 36, position: "relative" }}>
         <div
@@ -282,7 +281,7 @@ export const PortfolioFrame = (): JSX.Element => {
             borderTop: "1px solid rgba(0,83,224,0.25)",
             paddingTop: 20,
           }}
-        >
+          className="pb-[40px]">
           <div style={{ marginBottom: 20 }}>
             <p
               className="heading-font"
@@ -362,7 +361,6 @@ export const PortfolioFrame = (): JSX.Element => {
           </div>
         </div>
       </section>
-
       {/* ── GRID OF SECTIONS ── */}
       <section className="bp-section-grid">
         {/* Speaking Engagements */}
