@@ -386,7 +386,7 @@ export const PortfolioFrame = (): JSX.Element => {
                 href="https://business.adobe.com/products/experience-platform/agent-orchestrator/audiences.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: "#4d8fff", textDecoration: "underline" }}
+                style={{ color: "inherit", textDecoration: "underline" }}
                 data-testid="link-ai-agents"
               >
                 designed for AI Agents and experiences
