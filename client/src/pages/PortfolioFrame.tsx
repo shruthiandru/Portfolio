@@ -79,6 +79,12 @@ const teachingItems: ListItem[] = [
   {
     title: "Designing for Decision Fatigue",
     detail: "Industry Sponsor, Mentor & Reviewer — Indiana University Studio Practice",
+    links: [
+      {
+        label: "Teaching Plan",
+        href: "https://docs.google.com/document/d/1-NMjCfsxpwGWIzChtSOnJ5WrZRXJWWFBw4gMyLsD1hY/edit?tab=t.0",
+      },
+    ],
   },
 ];
 
