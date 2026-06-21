@@ -340,7 +340,7 @@ body {
 
 @media (max-width: 640px) {
   .bp-container { padding: 40px 18px 80px; }
-  .bp-footer { margin-left: -18px; margin-right: -18px; }
+  .bp-footer { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; }
 }
 
 /* ── Articles list ── */
