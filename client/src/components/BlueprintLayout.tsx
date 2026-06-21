@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "wouter";
+import logoSrc from "@assets/60f406287df73189cbeb7307_256_transparent_logo_1782061798509.png";
 
 export function BlueprintCorner({
   position,
@@ -109,6 +110,19 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
             marginBottom: 48,
           }}
         >
+          <Link
+            href="/"
+            aria-label="Home"
+            data-testid="link-logo"
+            style={{ display: "inline-flex", alignItems: "center" }}
+          >
+            <img
+              src={logoSrc}
+              alt="Shruthi Andru logo"
+              style={{ height: 40, width: "auto", display: "block" }}
+              data-testid="img-logo"
+            />
+          </Link>
           <nav style={{ display: "flex", gap: 6, alignItems: "center" }}>
             {navItems.map((item) => {
               const isActive = location === item.path;

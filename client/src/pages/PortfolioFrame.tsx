@@ -41,7 +41,7 @@ const educationItems = [
     title: "M.S Human Computer Interaction & Design",
     detail: "Indiana University Bloomington",
     thesis: {
-      label: "Thesis project: Toolkit Design for non designers to create Sex Toys",
+      label: "Thesis Project: Toolkit Design for Non Designers to Create Sex Toys",
       link: toolkitThesisPdf,
     },
   },
@@ -49,7 +49,7 @@ const educationItems = [
     title: "Bachelor of Architecture",
     detail: "National Institute of Technology, Jaipur",
     thesis: {
-      label: "Thesis project: REDEFINING PRISON TYPOLOGIES IN INDIA",
+      label: "Thesis Project: Redefining Prison Typologies in India",
       link: prisonThesisPdf,
     },
   },
