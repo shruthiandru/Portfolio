@@ -211,9 +211,7 @@ export const PortfolioFrame = (): JSX.Element => {
             letterSpacing: "0.15em",
             opacity: 0.7,
           }}
-        >
-          § TITLE BLOCK
-        </div>
+        >§ WHO IS SHE?</div>
 
         <h1
           className="heading-font"
