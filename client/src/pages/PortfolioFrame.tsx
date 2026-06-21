@@ -238,7 +238,7 @@ export const PortfolioFrame = (): JSX.Element => {
           pointerEvents: "none",
         }}
       >
-        PORTFOLIO — REV.2025 — SHRUTHI ANDRU
+        PORTFOLIO — REV.2026 — SHRUTHI ANDRU
       </div>
       {/* Left vertical label */}
       <div
@@ -557,55 +557,15 @@ export const PortfolioFrame = (): JSX.Element => {
           </div>
         </section>
 
-        {/* ── TITLE BLOCK FOOTER ── */}
-        <div className="blueprint-divider" style={{ margin: "40px 0 20px" }} />
-
+        {/* ── FOOTER DIVIDER (matches Figma mock) ── */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 1,
-            border: "1px solid rgba(0,83,224,0.2)",
-            padding: 0,
+            marginTop: 56,
+            maxWidth: 742,
+            height: 1,
+            background: "#3a3767",
           }}
-        >
-          {[
-            { label: "DRAWN BY", value: "SA" },
-            { label: "DATE", value: "2025" },
-            { label: "SCALE", value: "NTS" },
-            { label: "SHEET", value: "01 / 01" },
-          ].map((cell) => (
-            <div
-              key={cell.label}
-              style={{
-                borderRight: "1px solid rgba(0,83,224,0.2)",
-                padding: "10px 14px",
-              }}
-            >
-              <p className="mono" style={{ margin: 0, fontSize: 8, color: "#4d8fff", opacity: 0.5, letterSpacing: "0.15em" }}>
-                {cell.label}
-              </p>
-              <p className="mono" style={{ margin: "2px 0 0", fontSize: 13, color: "#c0c7d3", letterSpacing: "0.1em" }}>
-                {cell.value}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom annotation */}
-        <p
-          className="mono"
-          style={{
-            textAlign: "center",
-            marginTop: 24,
-            color: "#4d8fff",
-            fontSize: 9,
-            letterSpacing: "0.2em",
-            opacity: 0.35,
-          }}
-        >
-          ALL DIMENSIONS ARE IN CONCEPTUAL UNITS · NOT FOR CONSTRUCTION
-        </p>
+        />
       </div>
     </main>
   );
