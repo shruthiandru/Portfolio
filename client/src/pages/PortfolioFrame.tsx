@@ -1,4 +1,6 @@
 import { BlueprintLayout, BlueprintCorner } from "@/components/BlueprintLayout";
+import prisonThesisPdf from "@assets/618f5fdc8fa52f6c7c7e6eaf_Thesis_Presentation-_Redefining_Priso_1782061718970.pdf";
+import toolkitThesisPdf from "@assets/65dce7d32b31d98858ca345b_Final_Documentation_Shruthi_Andru_1782061718971.pdf";
 
 const speakingEngagements = [
   {
@@ -38,10 +40,18 @@ const educationItems = [
   {
     title: "M.S Human Computer Interaction & Design",
     detail: "Indiana University Bloomington",
+    thesis: {
+      label: "Thesis project: Toolkit Design for non designers to create Sex Toys",
+      link: toolkitThesisPdf,
+    },
   },
   {
     title: "Bachelor of Architecture",
     detail: "National Institute of Technology, Jaipur",
+    thesis: {
+      label: "Thesis project: REDEFINING PRISON TYPOLOGIES IN INDIA",
+      link: prisonThesisPdf,
+    },
   },
 ];
 
@@ -133,7 +143,17 @@ function SectionLabel({ label, index }: { label: string; index: string }) {
   );
 }
 
-function ItemRow({ title, detail, link }: { title: string; detail: string; link?: string | null }) {
+function ItemRow({
+  title,
+  detail,
+  link,
+  thesis,
+}: {
+  title: string;
+  detail: string;
+  link?: string | null;
+  thesis?: { label: string; link?: string | null };
+}) {
   return (
     <div
       style={{
@@ -176,6 +196,30 @@ function ItemRow({ title, detail, link }: { title: string; detail: string; link?
           detail
         )}
       </p>
+      {thesis && (
+        <p
+          className="body-font"
+          style={{ margin: "6px 0 0", color: "#8a90a8", fontSize: 12, lineHeight: 1.45 }}
+        >
+          {thesis.link ? (
+            <a
+              href={thesis.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#4d8fff", textDecoration: "underline" }}
+              data-testid={`link-thesis-${thesis.label
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "")
+                .slice(0, 24)}`}
+            >
+              {thesis.label}
+            </a>
+          ) : (
+            thesis.label
+          )}
+        </p>
+      )}
     </div>
   );
 }
@@ -411,7 +455,7 @@ export const PortfolioFrame = (): JSX.Element => {
           {educationItems.map((item, i) => (
             <div key={i} style={{ display: "flex", marginBottom: 14 }}>
               <AnnotationDot number={i + 1} />
-              <ItemRow title={item.title} detail={item.detail} />
+              <ItemRow title={item.title} detail={item.detail} thesis={item.thesis} />
             </div>
           ))}
         </div>
