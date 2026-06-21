@@ -83,10 +83,6 @@ export function Articles(): JSX.Element {
             >
               {article.body}
             </p>
-
-            {i !== articles.length - 1 && (
-              <div className="blueprint-divider" style={{ marginTop: 44 }} />
-            )}
           </article>
         ))}
       </section>
