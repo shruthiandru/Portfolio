@@ -313,7 +313,7 @@ export const PortfolioFrame = (): JSX.Element => {
               </strong>{" "}
               in this new AI Era.
               <br /><br />
-              She serves as a bridge between Scientific research and Engineering,{" "}
+              She serves as a bridge,{" "}
               <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>facilitating workshops between Scientific Research & Engineering</strong>{" "}
               and{" "}
               <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>consults with Product Teams</strong>{" "}
