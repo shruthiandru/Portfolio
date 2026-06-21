@@ -62,7 +62,7 @@ export function Articles(): JSX.Element {
             </div>
 
             <h2
-              className="heading-font"
+              className="heading-font font-semibold text-[24px]"
               style={{
                 color: "#c0c7d3",
                 fontSize: "clamp(22px, 3.5vw, 30px)",
