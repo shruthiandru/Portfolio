@@ -314,6 +314,10 @@ body {
 .bp-footer-links .sep {
   color: #3a3767;
 }
+.bp-footer {
+  margin-left: -32px;
+  margin-right: -32px;
+}
 
 @media (max-width: 860px) {
   .bp-footer-tag { font-size: 11px; }
@@ -336,6 +340,7 @@ body {
 
 @media (max-width: 640px) {
   .bp-container { padding: 40px 18px 80px; }
+  .bp-footer { margin-left: -18px; margin-right: -18px; }
 }
 
 /* ── Articles list ── */

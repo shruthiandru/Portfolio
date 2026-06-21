@@ -131,7 +131,7 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
         </div>
 
         {/* ── FOOTER (matches Figma mock) ── */}
-        <footer style={{ marginTop: 56, flexShrink: 0 }}>
+        <footer className="bp-footer" style={{ marginTop: 56, flexShrink: 0 }}>
           <div style={{ height: 1, background: "#3a3767" }} />
           <div className="bp-footer-row">
             <p className="body-font bp-footer-tag text-[9px]" data-testid="text-footer-tagline">
