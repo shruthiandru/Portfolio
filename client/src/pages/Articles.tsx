@@ -31,7 +31,7 @@ export function Articles(): JSX.Element {
             key={i}
             style={{ marginBottom: i === articles.length - 1 ? 0 : 44 }}
             data-testid={`article-${i}`}
-          >
+            className="mb-[44px]">
             <div className="bp-article-head">
               <span
                 className="heading-font"

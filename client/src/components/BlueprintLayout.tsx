@@ -44,7 +44,6 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
       <BlueprintCorner position="tr" />
       <BlueprintCorner position="bl" />
       <BlueprintCorner position="br" />
-
       {/* Top ruler annotation */}
       <div
         className="mono bp-side-label"
@@ -63,7 +62,6 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
       >
         PORTFOLIO — REV.2026 — SHRUTHI ANDRU
       </div>
-
       {/* Left vertical label */}
       <div
         className="mono bp-side-label"
@@ -82,7 +80,6 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
       >
         DESIGN · HCI · AI · ARCHITECTURE
       </div>
-
       {/* Right vertical label */}
       <div
         className="mono bp-side-label"
@@ -101,7 +98,6 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
       >
         SHEET 01 OF 01 · SCALE: NTS
       </div>
-
       <div className="bp-container">
         {/* ── HEADER / NAV ── */}
         <header
@@ -136,7 +132,7 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
         <footer style={{ marginTop: 56 }}>
           <div style={{ height: 1, background: "#3a3767" }} />
           <div className="bp-footer-row">
-            <p className="body-font bp-footer-tag" data-testid="text-footer-tagline">
+            <p className="body-font bp-footer-tag text-[9px]" data-testid="text-footer-tagline">
               Designed with love, coffee, lots of cat videos, hot girl music &amp;
               channeling my inner Taylor Swift
             </p>
@@ -146,6 +142,7 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="link-linkedin"
+                className="text-[9px]"
               >
                 LinkedIn
               </a>
@@ -154,7 +151,7 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
                 shruthiandru@gmail.com
               </a>
               <span className="sep">|</span>
-              <span data-testid="text-footer-copyright">Shruthi Andru . 2026</span>
+              <span data-testid="text-footer-copyright" className="text-[9px]">Shruthi Andru . 2026</span>
             </p>
           </div>
         </footer>
