@@ -381,7 +381,17 @@ export const PortfolioFrame = (): JSX.Element => {
               /Previously
             </p>
             <p className="body-font" style={{ color: "#777a90", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
-              She had designed for AI Agents and experiences for Enterprise marketing workflows.
+              She had{" "}
+              <a
+                href="https://business.adobe.com/products/experience-platform/agent-orchestrator/audiences.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#4d8fff", textDecoration: "underline" }}
+                data-testid="link-ai-agents"
+              >
+                designed for AI Agents and experiences
+              </a>{" "}
+              for Enterprise marketing workflows.
             </p>
           </div>
 
