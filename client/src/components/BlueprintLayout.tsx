@@ -99,6 +99,7 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
         SHEET 01 OF 01 · SCALE: NTS
       </div>
       <div className="bp-container">
+        <div className="bp-content">
         {/* ── HEADER / NAV ── */}
         <header
           style={{
@@ -127,9 +128,10 @@ export function BlueprintLayout({ children }: { children: ReactNode }) {
         </header>
 
         {children}
+        </div>
 
         {/* ── FOOTER (matches Figma mock) ── */}
-        <footer style={{ marginTop: 56 }}>
+        <footer style={{ marginTop: 56, flexShrink: 0 }}>
           <div style={{ height: 1, background: "#3a3767" }} />
           <div className="bp-footer-row">
             <p className="body-font bp-footer-tag text-[9px]" data-testid="text-footer-tagline">

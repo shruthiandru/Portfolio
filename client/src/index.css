@@ -335,7 +335,7 @@ body {
 }
 
 @media (max-width: 640px) {
-  .bp-container { padding: 40px 18px 56px; }
+  .bp-container { padding: 40px 18px 80px; }
 }
 
 /* ── Articles list ── */

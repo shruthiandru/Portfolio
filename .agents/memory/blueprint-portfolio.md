@@ -1,6 +1,6 @@
 ---
 name: Blueprint portfolio layout & footer
-description: Durable design constraints for the Shruthi Andru blueprint portfolio (shared layout, footer one-line rule).
+description: Durable design constraints for the blueprint-styled personal portfolio (shared layout, footer one-line rule).
 ---
 
 # Blueprint portfolio — layout & footer constraints
