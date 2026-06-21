@@ -557,15 +557,57 @@ export const PortfolioFrame = (): JSX.Element => {
           </div>
         </section>
 
-        {/* ── FOOTER DIVIDER (matches Figma mock) ── */}
-        <div
-          style={{
-            marginTop: 56,
-            maxWidth: 742,
-            height: 1,
-            background: "#3a3767",
-          }}
-        />
+        {/* ── FOOTER (matches Figma mock) ── */}
+        <footer style={{ marginTop: 56 }}>
+          <div style={{ height: 1, background: "#3a3767" }} />
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 16,
+              marginTop: 20,
+            }}
+          >
+            <p
+              className="body-font"
+              style={{ margin: 0, color: "#777a90", fontSize: 13, lineHeight: 1.5 }}
+            >
+              Designed with love, coffee, lots of cat videos, hot girl music &amp; channeling my inner Taylor Swift
+            </p>
+            <p
+              className="body-font"
+              style={{
+                margin: 0,
+                color: "#777a90",
+                fontSize: 13,
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                whiteSpace: "nowrap",
+              }}
+            >
+              <a
+                href="https://www.linkedin.com/in/shruthiandru"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#777a90", textDecoration: "none" }}
+              >
+                LinkedIn
+              </a>
+              <span style={{ color: "#3a3767" }}>|</span>
+              <a
+                href="mailto:shruthiandru@gmail.com"
+                style={{ color: "#777a90", textDecoration: "none" }}
+              >
+                shruthiandru@gmail.com
+              </a>
+              <span style={{ color: "#3a3767" }}>|</span>
+              <span>Shruthi Andru . 2026</span>
+            </p>
+          </div>
+        </footer>
       </div>
     </main>
   );
