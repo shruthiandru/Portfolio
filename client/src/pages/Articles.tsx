@@ -1,4 +1,4 @@
-import { BlueprintLayout, BlueprintCorner } from "@/components/BlueprintLayout";
+import { BlueprintLayout } from "@/components/BlueprintLayout";
 
 const articles = [
   {
@@ -24,71 +24,6 @@ const articles = [
 export function Articles(): JSX.Element {
   return (
     <BlueprintLayout>
-      {/* ── TITLE BLOCK ── */}
-      <section
-        style={{
-          position: "relative",
-          border: "1px solid rgba(0,83,224,0.18)",
-          padding: "32px 28px",
-          marginBottom: 40,
-        }}
-      >
-        <BlueprintCorner position="tl" />
-        <BlueprintCorner position="tr" />
-        <BlueprintCorner position="bl" />
-        <BlueprintCorner position="br" />
-
-        <div
-          className="mono"
-          style={{
-            position: "absolute",
-            top: -10,
-            left: 20,
-            background: "#020035",
-            padding: "0 8px",
-            color: "#4d8fff",
-            fontSize: 9,
-            letterSpacing: "0.15em",
-            opacity: 0.7,
-          }}
-        >
-          § ARTICLES
-        </div>
-
-        <h1
-          className="heading-font"
-          style={{
-            fontSize: "clamp(40px, 8vw, 80px)",
-            fontWeight: 700,
-            lineHeight: 0.95,
-            letterSpacing: "-0.01em",
-            color: "#c0c7d3",
-            margin: 0,
-          }}
-          data-testid="text-articles-title"
-        >
-          Articles
-        </h1>
-
-        {/* Dimension annotation line */}
-        <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ width: 8, height: 1, background: "#4d8fff", opacity: 0.5 }} />
-          <span
-            className="mono"
-            style={{ color: "#4d8fff", fontSize: 9, letterSpacing: "0.15em", opacity: 0.6 }}
-          >
-            WRITING · NOTES · ESSAYS
-          </span>
-          <div
-            style={{
-              flex: 1,
-              height: 1,
-              background: "linear-gradient(to right, rgba(77,143,255,0.4), transparent)",
-            }}
-          />
-        </div>
-      </section>
-
       {/* ── ARTICLE LIST ── */}
       <section style={{ maxWidth: 744, position: "relative" }}>
         {articles.map((article, i) => (
