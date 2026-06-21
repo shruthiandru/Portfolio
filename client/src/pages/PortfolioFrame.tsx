@@ -218,7 +218,7 @@ export const PortfolioFrame = (): JSX.Element => {
         <h1
           className="heading-font"
           style={{
-            fontFamily: '"Inter", sans-serif',
+            fontFamily: '"Futura", "Century Gothic", sans-serif',
             fontSize: "clamp(52px, 10vw, 108px)",
             fontWeight: 700,
             lineHeight: 0.92,
