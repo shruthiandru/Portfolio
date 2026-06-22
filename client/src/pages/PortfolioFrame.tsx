@@ -501,7 +501,8 @@ export const PortfolioFrame = (): JSX.Element => {
               >
                 designed for AI Agents and experiences
               </a>{" "}
-              for Enterprise marketing workflows.
+              for Enterprise marketing workflows. She also designed all
+              workflows at Adobe for AEP Audiences.
             </p>
           </div>
 
