@@ -469,7 +469,7 @@ export const PortfolioFrame = (): JSX.Element => {
                 }}
                 data-testid="link-design-philosophy"
               >
-                View my design philosophy
+                View her design philosophy
               </a>
             </p>
           </div>
