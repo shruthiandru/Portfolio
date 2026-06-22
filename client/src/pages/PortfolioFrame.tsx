@@ -455,6 +455,22 @@ export const PortfolioFrame = (): JSX.Element => {
               <strong style={{ color: "#c0c7d3", fontWeight: 600 }}>to improve their design processes through AI enablement.</strong>
               <br /><br />
               She also serves on the grant panel committee at Adobe and regularly volunteers her time for Pro Bono design services. Outside of work, she gives guest lectures in NYC and serves as an industry mentor sponsoring projects for various grad school's studio classes.
+              <br /><br />
+              <a
+                href="https://vimeo.com/820251988?share=copy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mono"
+                style={{
+                  color: "#4d8fff",
+                  textDecoration: "underline",
+                  fontSize: 13,
+                  letterSpacing: "0.05em",
+                }}
+                data-testid="link-design-philosophy"
+              >
+                View my design philosophy
+              </a>
             </p>
           </div>
 
