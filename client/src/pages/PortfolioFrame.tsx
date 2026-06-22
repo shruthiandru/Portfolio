@@ -136,7 +136,16 @@ const mentorshipItems: ListItem[] = [
       },
     ],
   },
-  { title: "Adobe Creative Apprenticeship", detail: "Mentor & Reviewer" },
+  {
+    title: "Adobe Creative Apprenticeship",
+    detail: "Mentor & Reviewer",
+    links: [
+      {
+        label: "Mentor Page",
+        href: "https://www.behance.net/resources/articles/mentors",
+      },
+    ],
+  },
   { title: "Adobe Creative Retreat", detail: "Mentor & Reviewer" },
 ];
 
