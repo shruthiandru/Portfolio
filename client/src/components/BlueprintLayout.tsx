@@ -27,9 +27,10 @@ export function BlueprintCorner({
   );
 }
 
-const navItems = [
-  { label: "HOME", path: "/" },
-  { label: "ARTICLES", path: "/articles" },
+const navItems: { label: string; path: string }[] = [
+  // Temporarily hidden per request — restore by uncommenting:
+  // { label: "HOME", path: "/" },
+  // { label: "ARTICLES", path: "/articles" },
 ];
 
 export function BlueprintLayout({ children }: { children: ReactNode }) {
